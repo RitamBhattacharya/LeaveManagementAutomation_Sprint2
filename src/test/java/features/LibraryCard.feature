@@ -1,42 +1,93 @@
-#Author: your.email@your.domain.com
-#Keywords Summary :
-#Feature: List of scenarios.
-#Scenario: Business rule through list of steps with arguments.
-#Given: Some precondition step
-#When: Some key actions
-#Then: To observe outcomes or validation
-#And,But: To enumerate more Given,When,Then steps
-#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
-#Examples: Container for s table
-#Background: List of steps run before each of the scenarios
-#""" (Doc Strings)
-#| (Data Tables)
-#@ (Tags/Labels):To group Scenarios
-#<> (placeholder)
-#""
-## (Comments)
-#Sample Feature Definition Template
-@tag
-Feature: Title of your feature
-  I want to use this template for my feature file
+Feature: Form Validation for Name, Email, Phone, and Age Fields
 
-  @tag1
-  Scenario: Title of your scenario
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
+  Scenario: Enter valid first name and leave last name blank
+    Given the user is on the form page
+    When the user enters "Ishan" as the first name
+    And leaves the last name blank
+    And enters a valid age "25"
+    And enters a valid email "ishan@example.com"
+    And enters a valid phone number "9876543210"
+    Then the form should display a validation error for the last name
 
-  @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+  Scenario: Leave first name blank and enter valid last name
+    Given the user is on the form page
+    When the user leaves the first name blank
+    And enters "Singha" as the last name
+    And enters a valid age "25"
+    And enters a valid email "ishan@example.com"
+    And enters a valid phone number "9876543210"
+    Then the form should display a validation error for the first name
 
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+  Scenario: Enter invalid email and valid phone number
+    Given the user is on the form page
+    When the user enters "Ishan" as the first name
+    And enters "Singha" as the last name
+    And enters a valid age "25"
+    And enters an invalid email "ishan#example"
+    And enters a valid phone number "9876543210"
+    Then the form should display a validation error for the email field
+
+  Scenario: Enter valid email and invalid phone number
+    Given the user is on the form page
+    When the user enters "Ishan" as the first name
+    And enters "Singha" as the last name
+    And enters a valid age "25"
+    And enters a valid email "ishan@example.com"
+    And enters an invalid phone number "abc123"
+    Then the form should display a validation error for the phone number field
+
+  Scenario: Enter invalid age input
+    Given the user is on the form page
+    When the user enters "Ishan" as the first name
+    And enters "Singha" as the last name
+    And enters an invalid age "abc"
+    And enters a valid email "ishan@example.com"
+    And enters a valid phone number "9876543210"
+    Then the form should display a validation error for the age field
+    
+    Feature: Work and Card Section Validation
+
+  Scenario: Select Student and enter School Name
+    Given the user is on the form page
+    When the user selects "Student" in the Work section
+    And enters "Springfield High School" as the school name
+    And selects "Apply New Card" from the Action dropdown
+    Then the form should accept the input and proceed
+
+  Scenario: Select Student and leave School Name blank
+    Given the user is on the form page
+    When the user selects "Student" in the Work section
+    And leaves the school name field blank
+    And selects "Renewal Old Card" from the Action dropdown
+    Then the form should display a validation error for the school name
+
+  Scenario: Select Employee and enter Company Name
+    Given the user is on the form page
+    When the user selects "Employee" in the Work section
+    And enters "TechCorp Pvt Ltd" as the company name
+    And selects "Renewal Old Card" from the Action dropdown
+    Then the form should accept the input and proceed
+
+  Scenario: Select Employee and leave Company Name blank
+    Given the user is on the form page
+    When the user selects "Employee" in the Work section
+    And leaves the company name field blank
+    And selects "Apply New Card" from the Action dropdown
+    Then the form should display a validation error for the company name
+
+  Scenario: Do not select any action from Card dropdown
+    Given the user is on the form page
+    When the user selects "Student" in the Work section
+    And enters "Springfield High School" as the school name
+    And does not select any option from the Action dropdown
+    Then the form should display a validation error for the Action field
+
+
+  Scenario: Enter valid data for all fields
+    Given the user is on the form page
+    When the user enters "Ishan" as the first name
+    And enters "Singha" as the last name
+    And enters a valid age "25"
+    And enters a valid email "ishan@example.com"
+    And enters a valid phone number "9876543210"
+    Then the form should be submitted successfully
