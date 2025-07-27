@@ -14,10 +14,10 @@ public class LibraryCardActions {
     }
 
     // Form fields
-    @FindBy(id = "firstName")
+    @FindBy(id = "first")
     WebElement firstNameField;
 
-    @FindBy(id = "lastName")
+    @FindBy(id = "last")
     WebElement lastNameField;
 
     @FindBy(id = "age")
@@ -29,22 +29,22 @@ public class LibraryCardActions {
     @FindBy(id = "phone")
     WebElement phoneField;
 
-    @FindBy(id = "student")
+    @FindBy(id = "work_0")
     WebElement studentRadio;
 
-    @FindBy(id = "employee")
+    @FindBy(id = "work_1")
     WebElement employeeRadio;
 
-    @FindBy(id = "schoolName")
+    @FindBy(id = "school")
     WebElement schoolNameField;
 
-    @FindBy(id = "companyName")
+    @FindBy(id = "company")
     WebElement companyNameField;
 
     @FindBy(id = "action")
     WebElement cardActionDropdown;
 
-    @FindBy(id = "submit")
+    @FindBy(id = "libraryCardSubmit")
     WebElement submitButton;
 
     // Actions
