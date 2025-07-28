@@ -10,7 +10,7 @@ public class ConfigFileReader {
 
     // Implement code here
     public Properties properties;
-    public final String propertyFilePath= "./src/test/java/com/automation/configs/config.properties";
+    public final String propertyFilePath= "./src/test/java/config/config.properties";
 
     public ConfigFileReader() {
         // implement code to load and read the properties
