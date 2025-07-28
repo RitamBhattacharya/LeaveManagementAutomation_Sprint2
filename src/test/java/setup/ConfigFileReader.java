@@ -1,4 +1,4 @@
-package com.automation.setup;
+package setup;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
