@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
     features = "src/test/resources/features",        // path to your feature files
-    glue = {"steps"},                                // package with step definitions
+    glue = {"definition"},                                // package with step definitions
     plugin = {"pretty", "html:target/cucumber-reports.html"},
     monochrome = true,
     tags = "@SmokeTest or @RegressionTest"           // optional, filter by tag
