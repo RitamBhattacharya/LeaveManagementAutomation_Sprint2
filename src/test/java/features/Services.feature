@@ -35,7 +35,7 @@ Feature: Ask a Librarian - Email Form
   Scenario: Submit Email form with blank query
     Given I navigate to the Ask a Librarian page
     When I select the "Email" option
-    And I leave the query field blank
+    And I leave the email query field blank
     And I submit the form
     Then I should see an error message "Query is required"
 
@@ -79,7 +79,7 @@ Feature: Ask a Librarian - Chat Form
   Scenario: Submit Chat form with blank query field
     Given I navigate to the Ask a Librarian page
     When I select the "Chat" option
-    And I leave the query field blank
+    And I leave the chat query field blank
     And I submit the form
     Then I should see an error message "Query is required"
 
